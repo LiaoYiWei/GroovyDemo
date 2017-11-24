@@ -1,19 +1,13 @@
 package com.howbuy.groovydemo.script;
 
-import groovy.lang.Binding;
 import groovy.lang.GroovyClassLoader;
-import groovy.util.GroovyScriptEngine;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URL;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
@@ -24,18 +18,8 @@ import java.nio.file.Paths;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroovyTest {
+
     String fileParser = "src/main/java/com/howbuy/groovydemo/script/FileParser.groovy";
-    @Test
-    public void loadGroovyScript() throws Exception {
-        String fileStr = "/Users/wesleyliao/IdeaProjects/microservice-archetype/archetype-inrpc/src/main/java/com/lyw/archetype/inrpc/script/HelloWord.groovy";
-        String fileStr1 = "/Users/wesleyliao/IdeaProjects/microservice-archetype/archetype-inrpc/src/main/java/com/lyw/archetype/inrpc/script/Verify.groovy";
-        GroovyClassLoader groovyClassLoader = new GroovyClassLoader();
-        Class aClass = groovyClassLoader.parseClass(new File(fileStr));
-        Object o = aClass.newInstance();
-        Method method = aClass.getMethod("invokeSpringBean", String.class);
-        Object hello = method.invoke(o, "hello");
-        System.out.println(hello);
-    }
 
     /**
      *
@@ -62,18 +46,4 @@ public class GroovyTest {
         }
     }
 
-    @Test
-    public void groovyScriptEngine() throws Exception {
-        Binding binding = new Binding();
-        String s = "/Users/wesleyliao/IdeaProjects/microservice-archetype/archetype-inrpc/src/main/java/com/lyw/archetype/inrpc/script/";
-        File file = new File(s);
-        System.out.println("\n\n\n\n\n" + file.toURI() + "\n\n\n\n");
-        System.out.println("\n\n\n\n\n" + file.toURI().toURL() + "\n\n\n\n");
-        GroovyScriptEngine engine = new GroovyScriptEngine(new URL[]{file.toURI().toURL()});
-        while (true) {
-            Object run = engine.run("ReloadingTest.groovy", binding);
-            System.out.println(run.getClass().getMethod("sayHello").invoke(run));
-            Thread.sleep(1000);
-        }
-    }
 }

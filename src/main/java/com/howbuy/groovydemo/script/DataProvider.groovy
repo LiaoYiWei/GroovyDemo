@@ -11,8 +11,7 @@ import com.howbuy.groovydemo.bean.SpringContextUtil
 class DataProvider {
 
     Map<String, String> provideDummyData() {
-        def bean = SpringContextUtil.getBean(DataBean.class);
+        def bean = SpringContextUtil.getBean(DataBean.class)
         return bean.generateData()
     }
-
 }

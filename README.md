@@ -14,7 +14,10 @@
 * 直接编译为Java字节码，以便您可以在任何可以使用Java的地方使用它
 
 ## groovy 运行原理图
+![groovy运行原理图](https://raw.githubusercontent.com/LiaoYiWei/groovydemo/master/doc/groovy.png)
 
+## groovy官方文档地址
+<http://groovy-lang.org/documentation.html#gettingstarted>
 
 ## demo说明
 文件处理模拟demo  

@@ -20,11 +20,121 @@
 <http://groovy-lang.org/documentation.html#gettingstarted>
 
 ## demo说明
-文件处理模拟demo  
+### 文件处理模拟demo  
 com.howbuy.groovydemo.script.FileProcessTest 
 
-不断加载groovy class不会导致OutOfMemoryException, JDK1.8下通过测试  
+### 不断加载groovy class不会导致OutOfMemoryException, JDK1.8下通过测试  
 com.howbuy.groovydemo.script.GroovyTest
+
+### java调用groovy脚本  
+```java
+    String dataProvider = "src/main/java/com/howbuy/groovydemo/script/DataProvider.groovy";
+    String fileGenerator = "src/main/java/com/howbuy/groovydemo/script/FileGenerator.groovy";
+    String fileParser = "src/main/java/com/howbuy/groovydemo/script/FileParser.groovy";
+
+    @Test
+    public void parseFile() throws Exception {
+        //1.加载fileParser脚本并解析为Java class
+        GroovyClassLoader groovyClassLoader = new GroovyClassLoader();
+        Class parseFileCls = groovyClassLoader.parseClass(new File(fileParser));
+        //2.实例化DataProvider
+        Object parseFileInstance = parseFileCls.newInstance();
+        //3.调用readContent方法获取文件内容
+        System.out.println("获取文件内容...");
+        String fileContent = (String) invokeMethod(parseFileCls, parseFileInstance, "readContent", new ArrayList<>());
+        System.out.println("----------------文件内容是 ------------\n" + fileContent);
+        //4.调用parseAndSaveContent方法解析并保存内容
+        System.out.println("----------解析并保存内容--------");
+        invokeMethod(parseFileCls, parseFileInstance, "parseAndSaveContent", Lists.newArrayList(String.class), fileContent);
+    }
+```
+### groovy脚本使用java对象  
+DataProvider groovy类
+```groovy
+class DataProvider {
+
+    Map<String, String> provideDummyData() {
+        def bean = SpringContextUtil.getBean(DataBean.class)
+        return bean.generateData()
+    }
+}
+```
+DataBean-Java类
+```java
+@Service
+public class DataBean {
+
+    public Map<String, Object> generateData() {
+        HashMap<String, Object> data = new HashMap<>();
+        data.put("name", "张三");
+        data.put("age", 25);
+        return data;
+    }
+
+    public void save(Object object) {
+        System.out.println("-----------DataBean save : \n" + object);
+    }
+
+}
+```
+SpringContextUtil-java类
+```java
+@Component
+public class SpringContextUtil implements ApplicationContextAware {
+    // Spring应用上下文环境
+    private static ApplicationContext applicationContext;
+
+    /**
+     * 实现ApplicationContextAware接口的回调方法，设置上下文环境
+     *
+     * @param applicationContext
+     */
+    public void setApplicationContext(ApplicationContext applicationContext) {
+        SpringContextUtil.applicationContext = applicationContext;
+    }
+
+    /**
+     * @return ApplicationContext
+     */
+    public static ApplicationContext getApplicationContext() {
+        return applicationContext;
+    }
+
+    /**
+     * 获取对象
+     *
+     * @param name
+     * @return Object
+     * @throws BeansException
+     */
+    public static Object getBean(String name) throws BeansException {
+        return applicationContext.getBean(name);
+    }
+
+    /**
+     * 获取对象
+     *
+     * @param name
+     * @return Object
+     * @throws BeansException
+     */
+    public static <T> T getBean(String name, Class<T> cls) throws BeansException {
+        return (T) applicationContext.getBean(name);
+    }
+
+
+    /**
+     * 获取对象
+     *
+     * @param aclass
+     * @param <T>
+     * @return
+     */
+    public static <T> T getBean(Class<T> aclass) {
+        return applicationContext.getBean(aclass);
+    }
+}
+```
 
 
 

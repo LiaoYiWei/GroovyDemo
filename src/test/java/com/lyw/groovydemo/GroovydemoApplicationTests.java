@@ -1,4 +1,4 @@
-package com.howbuy.groovydemo;
+package com.lyw.groovydemo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

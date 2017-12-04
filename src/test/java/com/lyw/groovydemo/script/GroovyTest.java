@@ -1,4 +1,4 @@
-package com.howbuy.groovydemo.script;
+package com.lyw.groovydemo.script;
 
 import groovy.lang.GroovyClassLoader;
 import org.junit.Test;
@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 @SpringBootTest
 public class GroovyTest {
 
-    String fileParser = "src/main/java/com/howbuy/groovydemo/script/FileParser.groovy";
+    String fileParser = "src/main/java/com/lyw/groovydemo/script/FileParser.groovy";
 
     /**
      *

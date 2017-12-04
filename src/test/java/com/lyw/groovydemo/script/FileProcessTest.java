@@ -1,4 +1,4 @@
-package com.howbuy.groovydemo.script;
+package com.lyw.groovydemo.script;
 
 import groovy.lang.GroovyClassLoader;
 import org.assertj.core.util.Lists;
@@ -23,9 +23,9 @@ import java.util.Map;
 @SpringBootTest
 public class FileProcessTest {
 
-    String dataProvider = "src/main/java/com/howbuy/groovydemo/script/DataProvider.groovy";
-    String fileGenerator = "src/main/java/com/howbuy/groovydemo/script/FileGenerator.groovy";
-    String fileParser = "src/main/java/com/howbuy/groovydemo/script/FileParser.groovy";
+    String dataProvider = "src/main/java/com/lyw/groovydemo/script/DataProvider.groovy";
+    String fileGenerator = "src/main/java/com/lyw/groovydemo/script/FileGenerator.groovy";
+    String fileParser = "src/main/java/com/lyw/groovydemo/script/FileParser.groovy";
 
     @Test
     public void parseFile() throws Exception {

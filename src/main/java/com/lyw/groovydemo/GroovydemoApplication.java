@@ -1,4 +1,4 @@
-package com.howbuy.groovydemo;
+package com.lyw.groovydemo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

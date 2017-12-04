@@ -1,7 +1,7 @@
-package com.howbuy.groovydemo.script
+package com.lyw.groovydemo.script
 
-import com.howbuy.groovydemo.bean.DataBean
-import com.howbuy.groovydemo.bean.SpringContextUtil
+import com.lyw.groovydemo.bean.DataBean
+import com.lyw.groovydemo.bean.SpringContextUtil
 
 /**
  * <p>注释</p>

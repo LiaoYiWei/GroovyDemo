@@ -21,16 +21,16 @@
 
 ## demo说明
 ### 文件处理模拟demo  
-com.howbuy.groovydemo.script.FileProcessTest 
+com.lyw.groovydemo.script.FileProcessTest 
 
 ### 不断加载groovy class不会导致OutOfMemoryException, JDK1.8下通过测试  
-com.howbuy.groovydemo.script.GroovyTest
+com.lyw.groovydemo.script.GroovyTest
 
 ### java调用groovy脚本  
 ```java
-    String dataProvider = "src/main/java/com/howbuy/groovydemo/script/DataProvider.groovy";
-    String fileGenerator = "src/main/java/com/howbuy/groovydemo/script/FileGenerator.groovy";
-    String fileParser = "src/main/java/com/howbuy/groovydemo/script/FileParser.groovy";
+    String dataProvider = "src/main/java/com/lyw/groovydemo/script/DataProvider.groovy";
+    String fileGenerator = "src/main/java/com/lyw/groovydemo/script/FileGenerator.groovy";
+    String fileParser = "src/main/java/com/lyw/groovydemo/script/FileParser.groovy";
 
     @Test
     public void parseFile() throws Exception {
@@ -49,7 +49,7 @@ com.howbuy.groovydemo.script.GroovyTest
     }
 ```
 ### groovy脚本使用java对象  
-DataProvider groovy类
+DataProvider-groovy类
 ```groovy
 class DataProvider {
 

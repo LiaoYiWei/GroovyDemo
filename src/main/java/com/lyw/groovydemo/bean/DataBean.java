@@ -1,4 +1,4 @@
-package com.howbuy.groovydemo.bean;
+package com.lyw.groovydemo.bean;
 
 import org.springframework.stereotype.Service;
 
